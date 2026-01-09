@@ -17,5 +17,17 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "categories": [
+    "books",
+    "business",
+    "education",
+    "finance",
+    "lifestyle",
+    "navigation",
+    "personalization",
+    "productivity",
+    "security",
+    "utilities"
   ]
 }
