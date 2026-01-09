@@ -18,16 +18,6 @@
       "type": "image/png"
     }
   ],
-  "categories": [
-    "books",
-    "business",
-    "education",
-    "finance",
-    "lifestyle",
-    "navigation",
-    "personalization",
-    "productivity",
-    "security",
-    "utilities"
-  ]
+  "id": "org.jangafrica.ga-reporter",
+  "description": "GA REPORTER is a secure school reporting application designed for daily routines, student registers, class attendance, bus driver reports, disciplinary board records, and administrative requests. It provides fast, organized, and mobile-friendly access to official school reporting forms."
 }
