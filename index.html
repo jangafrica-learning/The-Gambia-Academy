@@ -315,6 +315,13 @@
       .catch(err => console.error("SW failed:", err));
   }
 </script>
+<script>
+function updateOnlineStatus(){
+  document.getElementById('offlineMsg').style.display = 'none';
+}
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+</script>
 
 </body>
 
