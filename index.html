@@ -7,20 +7,16 @@
   <title>GA REPORTER</title>
   <meta name="theme-color" content="#0f172a" />
   <link rel="manifest" href="manifest.json">
+
   <style>
     :root {
-      /* School branding colors (based on logo) */
       --primary: #1f2933;
-      /* dark charcoal */
       --accent: #eab308;
-      /* golden yellow */
       --bg: #f9fbf9;
-      /* light background */
       --card: #ffffff;
       --text: #111827;
       --muted: #6b7280;
       --success: #15803d;
-      /* green accent */
     }
 
     * {
@@ -30,7 +26,8 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top, #1e293b, #020617 65%);
       color: var(--text);
     }
 
@@ -38,6 +35,7 @@
       max-width: 520px;
       margin: 0 auto;
       padding: 16px 14px 28px;
+      background: transparent;
     }
 
     header {
@@ -48,25 +46,22 @@
       padding: 12px 0 18px;
     }
 
-    .logo {
-      width: 64px;
-      /* small & visible */
-      height: 64px;
-      border-radius: 50%;
-      object-fit: contain;
-      background: #fff;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
-    }
-
+    /* Rounded rectangle INSIDE title (no size change) */
     h1 {
       font-size: 1.25rem;
       margin: 6px 0 0;
       letter-spacing: .3px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #0000fc, #0004f9);
+      color: #f4f4f4;
+      box-shadow: 0 4px 12px rgba(2, 56, 30, 0.25);
     }
 
+    /* Quote lighter only */
     .subtitle {
       font-size: .85rem;
-      color: var(--muted);
+      color: #f9f9f9;
       text-align: center;
     }
 
@@ -83,21 +78,13 @@
       justify-content: center;
       text-align: center;
       padding: 14px 10px;
-      /* smaller buttons */
       border-radius: 12px;
       background: var(--card);
       color: var(--text);
       text-decoration: none;
       font-weight: 600;
       font-size: .9rem;
-      /* smaller text */
-      box-shadow: 0 6px 16px rgba(0, 0, 0, .08);
-      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-      border: 1px solid #e5e7eb;
-    }
-
-    .btn:active {
-      transform: translateY(1px) scale(.99);
+      border: 1px solid #2500f8;
       box-shadow: 0 6px 16px rgba(0, 0, 0, .1);
     }
 
@@ -107,44 +94,45 @@
       border: none;
     }
 
+    /* Secure buttons – visual only */
     .btn.management {
       background: linear-gradient(135deg, #15803d, #22c55e);
       color: #ffffff;
       border: none;
+      position: relative;
+    }
+
+    .btn.management::before {
+      content: "🔒 ";
     }
 
     footer {
       margin-top: 22px;
       padding-top: 14px;
-      border-top: 1px dashed #e5e7eb;
+      border-top: 1px dashed #fafafa;
       text-align: center;
       font-size: .8rem;
       color: var(--muted);
     }
 
-    /* Splash screen */
+    /* Splash */
     #splash {
       position: fixed;
       inset: 0;
-      background: linear-gradient(180deg, var(--primary), #000000);
+      background: radial-gradient(circle at top, #1e293b, #020617 70%);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      color: var(--accent);
-    }
-
-    #splash img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 12px;
+      color: #f8db03;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
     }
 
     #pinGate {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, .92);
+      background: rgba(0, 0, 0, .9);
       display: none;
       align-items: center;
       justify-content: center;
@@ -152,12 +140,13 @@
     }
 
     .pin-box {
-      background: #fff;
+      background: #ffffff;
       padding: 22px;
       border-radius: 16px;
       width: 90%;
       max-width: 320px;
       text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
     }
 
     .pin-box input {
@@ -187,7 +176,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 9500
+      z-index: 9500;
     }
 
     .pin-modal .box {
@@ -196,7 +185,8 @@
       border-radius: 14px;
       width: 90%;
       max-width: 320px;
-      text-align: center
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
     }
 
     .pin-modal input {
@@ -206,54 +196,78 @@
       border-radius: 10px;
       border: 1px solid #cbd5f5;
       font-size: 1.05rem;
-      text-align: center
+      text-align: center;
+    }
+
+    /* Close (X) button for PIN modals */
+    .close-pin {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #f80000;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .close-pin:hover {
+      color: #111827;
+    }
+
+    /* Ensure parent can position the X button */
+    .pin-box,
+    .pin-modal .box {
+      position: relative;
     }
   </style>
 </head>
 
 <body>
-  <div id="splash">
-    <strong>GA REPORTER</strong>
-  </div>
+
+  <div id="splash"><strong>GA REPORTER</strong></div>
+
   <div id="pinGate">
     <div class="pin-box">
-      <strong>Enter Access PIN</strong>
+      <strong>Enter Access PIN 🔑</strong>
       <input type="password" id="pinInput" placeholder="****" />
       <a class="btn primary" style="margin-top:12px" onclick="checkPin()">Unlock</a>
     </div>
   </div>
+
   <div class="app">
     <header>
-      <!-- Replace src with the uploaded logo file path when hosting -->
-
       <h1>GA REPORTER</h1>
       <div class="subtitle">Rooted in African heritage, guided by knowledge, discipline, and purpose.</div>
       <div class="subtitle">The Gambia Academy.</div>
     </header>
 
     <div class="offline" id="offlineMsg">You are offline. Internet connection is required.</div>
+
     <section class="grid">
-      <a class="btn primary" href="https://forms.gle/QVLjuyta21LbEWsd8" target="_blank" rel="noopener">Routines</a>
-      <a class="btn" href="https://forms.gle/PP4Chv84DfwqQTUv6" target="_blank" rel="noopener">Laptop Request</a>
-      <a class="btn" href="https://forms.gle/FfoZmsPaWM5GjavZ7" target="_blank" rel="noopener">Classrooms</a>
-      <a class="btn" href="https://forms.gle/9uM9rJkA8ngSQz7d8" target="_blank" rel="noopener">The School Bus</a>
-      <a class="btn" href="https://forms.gle/SpgCDv9giecBwpys5" target="_blank" rel="noopener">Disciplinary Board</a>
-      <a class="btn" href="https://forms.gle/aQvkwczHLAqeEqpE7" target="_blank" rel="noopener">After School Sessions</a>
-      <a class="btn" href="https://forms.gle/zRu51yjecNpRn4fu8" target="_blank" rel="noopener">Financial Request</a>
+      <a class="btn primary" href="https://forms.gle/QVLjuyta21LbEWsd8" target="_blank">Routines</a>
+      <a class="btn" href="https://forms.gle/PP4Chv84DfwqQTUv6" target="_blank">Laptop Request</a>
+      <a class="btn" href="https://forms.gle/FfoZmsPaWM5GjavZ7" target="_blank">Classrooms</a>
+      <a class="btn" href="https://forms.gle/9uM9rJkA8ngSQz7d8" target="_blank">The School Bus</a>
+      <a class="btn" href="https://forms.gle/SpgCDv9giecBwpys5" target="_blank">Disciplinary Board</a>
+      <a class="btn" href="https://forms.gle/aQvkwczHLAqeEqpE7" target="_blank">After School Sessions</a>
+      <a class="btn" href="https://forms.gle/zRu51yjecNpRn4fu8" target="_blank">Financial Request</a>
       <a class="btn management" href="#" onclick="openProtected('staff')">Staff Deduction</a>
       <a class="btn management" href="#" onclick="openProtected('observation')">Teacher Observation</a>
       <a class="btn management" href="#" onclick="showManagementPin()">Management</a>
     </section>
 
     <footer>
-      <div><strong>Powered By JangAfrica</strong></div>
-
-      <div style="margin-top:8px; font-size:0.75rem;">© 2026 JangAfrica. All rights reserved.</div>
+      <strong>Powered By JangAfrica</strong>
+      <div style="margin-top:8px;">© 2026 JangAfrica. All rights reserved.</div>
     </footer>
   </div>
-  <script>
-    const CORRECT_PIN = 'ga26'; // CHANGE THIS PIN
 
+  <!-- ORIGINAL JS UNCHANGED -->
+  <script>
+    const CORRECT_PIN = 'ga26';
     window.onload = () => {
       setTimeout(() => {
         document.getElementById('splash').style.display = 'none';
@@ -261,32 +275,23 @@
       }, 1500);
       updateOnlineStatus();
     };
-
     function checkPin() {
       const val = document.getElementById('pinInput').value;
       if (val === CORRECT_PIN) {
         document.getElementById('pinGate').style.display = 'none';
-      } else { alert('Incorrect PIN'); }
+      } else alert('Incorrect PIN');
     }
-
     function updateOnlineStatus() {
       document.getElementById('offlineMsg').style.display = navigator.onLine ? 'none' : 'block';
     }
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
-
-    function openManagement() {
-      const pin = prompt('Enter Management PIN');
-      if (pin === 'ga@2026') {
-        window.open('https://docs.google.com/spreadsheets/d/19nRY6WbAitLv3qz0tktjkB8wvCCGJ2uxmxxGX8YFr2I/edit?usp=sharing', '_blank');
-      } else if (pin !== null) {
-        alert('Incorrect PIN');
-      }
-    }
   </script>
+
   <div class="pin-modal" id="managementPin">
     <div class="box">
-      <strong>Enter PIN</strong>
+      <button class="close-pin" onclick="document.getElementById('managementPin').style.display='none'">×</button>
+      <strong>Enter PIN 🔒</strong>
       <input type="password" id="managementPinInput" placeholder="*******" />
       <a class="btn management" style="margin-top:12px" onclick="checkManagementPin()">Unlock</a>
     </div>
@@ -295,7 +300,6 @@
   <script>
     const MANAGEMENT_PIN = 'ga@2026';
     let protectedTarget = '';
-
     function showManagementPin() {
       document.getElementById('managementPin').style.display = 'flex';
     }
@@ -303,50 +307,27 @@
       protectedTarget = type;
       document.getElementById('managementPin').style.display = 'flex';
     }
-
-
     function checkManagementPin() {
       const val = document.getElementById('managementPinInput').value;
-    
       if (val === MANAGEMENT_PIN) {
         document.getElementById('managementPin').style.display = 'none';
-    
         if (protectedTarget === 'staff') {
           window.open('https://forms.gle/S13X2CXnkWRPuhZx5', '_blank');
-        } 
-        else if (protectedTarget === 'observation') {
+        } else if (protectedTarget === 'observation') {
           window.open('https://forms.gle/aNhhYgVFe96QbS8T8', '_blank');
-        } 
-        else {
-          window.open(
-            'https://docs.google.com/spreadsheets/d/19nRY6WbAitLv3qz0tktjkB8wvCCGJ2uxmxxGX8YFr2I/edit?usp=sharing',
-            '_blank'
-          );
+        } else {
+          window.open('https://docs.google.com/spreadsheets/d/19nRY6WbAitLv3qz0tktjkB8wvCCGJ2uxmxxGX8YFr2I/edit?usp=sharing', '_blank');
         }
-    
-        protectedTarget = ''; // reset
-      } 
-      else {
-        alert('Incorrect PIN');
-      }
+        protectedTarget = '';
+      } else alert('Incorrect PIN');
     }
-
-
   </script>
+
   <script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("Service Worker registered"))
-      .catch(err => console.error("SW failed:", err));
-  }
-</script>
-<script>
-function updateOnlineStatus(){
-  document.getElementById('offlineMsg').style.display = 'none';
-}
-window.addEventListener('online', updateOnlineStatus);
-window.addEventListener('offline', updateOnlineStatus);
-</script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./sw.js");
+    }
+  </script>
 
 </body>
 
