@@ -234,14 +234,14 @@
     <div class="offline" id="offlineMsg">You are offline. Internet connection is required.</div>
     <section class="grid">
       <a class="btn primary" href="https://forms.gle/QVLjuyta21LbEWsd8" target="_blank" rel="noopener">Routines</a>
-      <a class="btn" href="https://forms.gle/PP4Chv84DfwqQTUv6" target="_blank" rel="noopener">Register</a>
-      <a class="btn" href="https://forms.gle/FfoZmsPaWM5GjavZ7" target="_blank" rel="noopener">Class Attendance</a>
-      <a class="btn" href="https://forms.gle/9uM9rJkA8ngSQz7d8" target="_blank" rel="noopener">School Bus Driver’s
-        Report</a>
+      <a class="btn" href="https://forms.gle/PP4Chv84DfwqQTUv6" target="_blank" rel="noopener">Laptop Request</a>
+      <a class="btn" href="https://forms.gle/FfoZmsPaWM5GjavZ7" target="_blank" rel="noopener">Class</a>
+      <a class="btn" href="https://forms.gle/9uM9rJkA8ngSQz7d8" target="_blank" rel="noopener">The School BusS</a>
       <a class="btn" href="https://forms.gle/SpgCDv9giecBwpys5" target="_blank" rel="noopener">Disciplinary Board</a>
-      <a class="btn" href="https://forms.gle/aQvkwczHLAqeEqpE7" target="_blank" rel="noopener">After School Sessions</a>
-      <a class="btn" href="https://forms.gle/zRu51yjecNpRn4fu8" target="_blank" rel="noopener">Student Financial
-        Request</a>
+      <a class="btn" href="https://forms.gle/aQvkwczHLAqeEqpE7" target="_blank" rel="noopener">After School Class</a>
+      <a class="btn" href="https://forms.gle/zRu51yjecNpRn4fu8" target="_blank" rel="noopener">Financial Request</a>
+      <a class="btn management" href="#" onclick="openProtected('staff')">Staff Deduction</a>
+      <a class="btn management" href="#" onclick="openProtected('observation')">Teacher Observation</a>
       <a class="btn management" href="#" onclick="showManagementPin()">Management</a>
     </section>
 
@@ -294,18 +294,43 @@
 
   <script>
     const MANAGEMENT_PIN = 'ga@2026';
+    let protectedTarget = '';
 
     function showManagementPin() {
       document.getElementById('managementPin').style.display = 'flex';
     }
+    function openProtected(type) {
+      protectedTarget = type;
+      document.getElementById('managementPin').style.display = 'flex';
+    }
+
 
     function checkManagementPin() {
       const val = document.getElementById('managementPinInput').value;
+    
       if (val === MANAGEMENT_PIN) {
         document.getElementById('managementPin').style.display = 'none';
-        window.open('https://docs.google.com/spreadsheets/d/19nRY6WbAitLv3qz0tktjkB8wvCCGJ2uxmxxGX8YFr2I/edit?usp=sharing', '_blank');
-      } else { alert('Incorrect PIN'); }
+    
+        if (protectedTarget === 'staff') {
+          window.open('https://forms.gle/S13X2CXnkWRPuhZx5', '_blank');
+        } 
+        else if (protectedTarget === 'observation') {
+          window.open('https://forms.gle/aNhhYgVFe96QbS8T8', '_blank');
+        } 
+        else {
+          window.open(
+            'https://docs.google.com/spreadsheets/d/19nRY6WbAitLv3qz0tktjkB8wvCCGJ2uxmxxGX8YFr2I/edit?usp=sharing',
+            '_blank'
+          );
+        }
+    
+        protectedTarget = ''; // reset
+      } 
+      else {
+        alert('Incorrect PIN');
+      }
     }
+
 
   </script>
   <script>
